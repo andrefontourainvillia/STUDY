@@ -22,7 +22,7 @@ def fetch_and_format_content(url):
     try:
         # Fetch the webpage with a user agent to simulate browser request
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         }
         
         print(f"Fetching content from: {url}")
@@ -39,9 +39,6 @@ def fetch_and_format_content(url):
         # Get the main content area (adjust selector based on the site structure)
         # Try to find main content container
         main_content = soup.find('main') or soup.find('article') or soup.find('div', class_='content') or soup.body
-        
-        if not main_content:
-            main_content = soup.body
         
         # Convert HTML to Markdown
         h = html2text.HTML2Text()
@@ -88,9 +85,7 @@ def main():
     print("MARKDOWN CONTENT:")
     print("="*80 + "\n")
     print(markdown_content)
-    
-    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
